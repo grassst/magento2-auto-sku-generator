@@ -74,6 +74,9 @@ class Modifysku extends AbstractModifier
 			
 			$product  			= 	$collection->getFirstItem();
 			$lastMacthedSku 	=	$product->getSku();
+			if (strpos($lastMatchedSku, "-") > 0 ) {
+				$lastMatchedSku         =       substr($lastMatchedSku, 0, strpos($lastMatchedSku, "-"));
+			}
 			$findLastIncrement 	=   (int) preg_replace('/[^0-9]/', '', $lastMacthedSku);
 			$nextInrement   	= 	++$findLastIncrement;
 			$incrementLength 	= 	strlen($findLastIncrement) + strlen($_prefix);// 
